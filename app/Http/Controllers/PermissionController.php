@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -11,8 +12,8 @@ class PermissionController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-       return view('permissionandroles.permission.index');
+    {       $permissions=Permission::get();
+       return view('permissionandroles.permission.index',['permisssions'=>$permissions]);
     }
 
     /**
@@ -20,6 +21,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+
         return view('permissionandroles.permission.create');
 
 
@@ -30,7 +32,24 @@ class PermissionController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+
+            'name'=>['required'],
+
+
+        ]);
+
+        // $data=[
+        //     'name' => $request->name,
+        // ];
+        $input=$request->only('name');
+
+        Permission::create($input);
+        return redirect()
+        ->route('permissions.index')
+        ->with('success','the permission added successfully');
+        
         
     }
 
@@ -38,9 +57,11 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Permission $permission)
     {
-       return view('permissionandroles.permission.edit');
+        $permission=Permission::find($permission);
+
+       return view('permissionandroles.permission.edit',['permission'=>$permission]);
     }
 
     /**
