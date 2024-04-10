@@ -57,7 +57,10 @@ Route::put('manager/edit/role{name}',[ManagerController::class,'updaterole'])->n
 
 Route::resource('permissions',PermissionController::class);
 Route::resource('roles',RoleController::class);
-
+Route::get('roles/add/permission/role/{roleid}',[RoleController::class,'addPermissionToRole'])
+                                            ->name('roles.add.permission');
+Route::PUT('roles/add/permission/role/{roleid}',[RoleController::class,'givePermissionToRole'])
+                                            ->name('roles.give.permission');
 
 
 

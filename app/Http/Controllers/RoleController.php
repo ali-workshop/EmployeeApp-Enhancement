@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -94,4 +95,38 @@ class RoleController extends Controller
         ->route('roles.index')
         ->with('success','the role Deleted successfully');
     }
+
+    public function addPermissionToRole($roleid){
+            $role=Role::find($roleid);
+            $rolepermissions=$role->permissions;#to get all the permission assosiated to the specific  role and this is gold:)
+            $permissions=Permission::get();
+            // dd($permissions);
+            return view('permissionandroles.role.addpermission',[
+                'permissions'=>$permissions,
+                'roleid'=>$roleid,
+                'rolepermissions'=>$rolepermissions
+                    
+                ]);
+
+    }
+
+
+    public function givePermissionToRole(Request $request,$roleid)
+      {
+            $role=Role::find($roleid);
+            $request->validate([
+                
+            'permissions'=>['required'],
+
+            ]);
+            $permissions=$request->only('permissions');
+            $role->syncPermissions($permissions);
+            return redirect()
+            ->route('roles.index')
+            ->with('success','the permission added to the role successfully');
+
+           
+
+
+        }
 }

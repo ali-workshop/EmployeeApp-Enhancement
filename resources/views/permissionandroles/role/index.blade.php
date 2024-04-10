@@ -17,6 +17,7 @@
         <td>{{$role->id}}</td>
         <td>{{$role->name}}</td>
        <td><a href="{{route('roles.edit',['role'=>$role])}}">edit</a></td>
+       <td><a href="{{route('roles.add.permission',['roleid'=>$role->id])}}">add/edit permission</a></td>
        <td><form action='{{route('roles.destroy',['role'=>$role])}}' method="post">
         @csrf
         @method('DELETE')   
