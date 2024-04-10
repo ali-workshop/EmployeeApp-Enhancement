@@ -43,18 +43,3 @@ Route::put('/manager/edit{sname}',[ManagerController::class,'updatename'])->name
 Route::get('manager/get/role',[ManagerController::class,'getrole'])->name("manager.get.role");
 Route::get('/manager/edit/role',[ManagerController::class,'editrole'])->name('manager.edit.role');
 Route::put('manager/edit/role{name}',[ManagerController::class,'updaterole'])->name("manger.update.role");
-// next step add more features and inclue the upgrade message for employee when change the role from employee to manager
-// enahncements on the previos repo :
-/*
-1-make all the validations and use custom rules and use the requet class. done
-1.1. update using ajax form.done
-2-edit the weakness that they told u about  like the passowrd in ther table and hashing and edit and search and delelt using the name.done.
-2.1- add the second name with the serach  for professinal. done
-3-make the middleware more advanced by using the spatie role and permisssion
-4-add chech box or selection with checked and make it more attricative.
-6-add the permission addition fucttion wiht it's controller sure and the role also and make it more advacned. 
-
-
-
-
-*/
