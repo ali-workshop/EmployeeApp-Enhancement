@@ -17,7 +17,11 @@
         <td>{{$permission->id}}</td>
         <td>{{$permission->name}}</td>
        <td><a href="{{route('permissions.edit',['permission'=>$permission])}}">edit</a></td>
-       <td><a href="">delete</a></td>
+       <td><form action='{{route('permissions.destroy',['permission'=>$permission])}}' method="post">
+        @csrf
+        @method('DELETE')   
+        <input type='submit'value='DELETE' >
+    </form></td>
     </tr>
     
     @endforeach

@@ -79,16 +79,17 @@ class PermissionController extends Controller
     // $permission->update($request->name);
     return redirect()
     ->route('permissions.index')
-    ->with('success','the permission added successfully');
-
-
+    ->with('success','the permission updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
-    {
-        
+    public function destroy(Permission $permission)
+    {   
+        $permission->delete();
+        return redirect()
+        ->route('permissions.index')
+        ->with('success','the permission Deleted successfully');
     }
 }
