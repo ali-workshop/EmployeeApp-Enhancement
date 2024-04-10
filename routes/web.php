@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
@@ -55,7 +56,7 @@ Route::put('manager/edit/role{name}',[ManagerController::class,'updaterole'])->n
 
 
 Route::resource('permissions',PermissionController::class);
-
+Route::resource('roles',RoleController::class);
 
 
 
