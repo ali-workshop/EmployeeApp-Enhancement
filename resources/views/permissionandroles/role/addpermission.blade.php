@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>no thing</title>
 
-
-
 </head>
 <body>
 <form  action="{{route('roles.give.permission',['roleid'=>$roleid])}}" method="POST">
