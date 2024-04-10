@@ -18,7 +18,7 @@
 
     @foreach ($permissions as $permission )   
     <label>
-    <input type="checkbox"  name='permissions[]' value="{{$permission->name}}"   multiple >
+    <input type="checkbox"  name='permissions[]' value="{{$permission->name}}" multiple  {{$rolepermissions->contains($permission->id) ? 'checked' :" "}} >
     
      {{$permission->name}}</label>
 

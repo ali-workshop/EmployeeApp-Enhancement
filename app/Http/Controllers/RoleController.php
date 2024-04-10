@@ -99,7 +99,9 @@ class RoleController extends Controller
     public function addPermissionToRole($roleid){
             $role=Role::find($roleid);
             $rolepermissions=$role->permissions;#to get all the permission assosiated to the specific  role and this is gold:)
+            // dd($rolepermissions);
             $permissions=Permission::get();
+            
             // dd($permissions);
             return view('permissionandroles.role.addpermission',[
                 'permissions'=>$permissions,
