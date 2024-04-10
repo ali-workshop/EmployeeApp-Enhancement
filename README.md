@@ -1,4 +1,4 @@
-
+# ENHANCEMENT THE EMPLOYEE APP
 # TASK4
 in english: 
 
@@ -56,9 +56,12 @@ Install my-project from github
   npm run dev
 ```
     
-## Improvments to apply
-a lot of enhancement will be apply soon:) 
-
+## Improvments applied
+####  all the validations and use custom rules and use the requet class 
+#### using ajax for edit form
+#### the weakness and search for name insteade of id 
+#### second name with the serach if the first name similar
+#### add the permission and roles using SPATIE :)
 
 ## Next step 
 use more best practice ways 
