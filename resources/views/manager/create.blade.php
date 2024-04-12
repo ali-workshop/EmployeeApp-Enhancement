@@ -42,8 +42,10 @@
   <label for="role">Role:</label><br>
   <select placeholder="role" name="role" >
     <option value="">Select Role</option>
-    <option value="manager">Manager</option>
-    <option value="employee">Employee</option>
+    @foreach ( $roles as $role)
+    <option value="{{$role->name}}">{{$role->name}}</option>  
+    @endforeach
+    
   </select><br><br>
   <span style="color: red">
     @error('role')

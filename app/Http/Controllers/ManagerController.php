@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Rules\UpperCaseRule;
 use Illuminate\Http\Request;
 use App\Http\Requests\MyRequest;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
@@ -20,8 +21,9 @@ class ManagerController extends Controller
         return view('manager.dashboard');
     }
     public function create(){
-
-        return view('manager.create');
+            $roles=Role::get();
+        return view('manager.create'
+    ,['roles'=>$roles]);
 
     }
     public function store(MyRequest $request){
@@ -31,11 +33,14 @@ class ManagerController extends Controller
             'sname'=> $request->sname,
             'email'=> $request->email,
             'password'=> Hash::make( $request->password),
-            'role'=> $request->role,
+        
 
         ];
 
-      User::create($NewRecord);
+      $user=User::create($NewRecord);
+    //   assign the entered roles into the created user using the spatie role.:)
+      $user->syncRoles($request->role);
+
       return redirect()->route('manager.dashboard')->with('success','Account Added Successfully..');#make wiht this  link for see the table 
     }
 
