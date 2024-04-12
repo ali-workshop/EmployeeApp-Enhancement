@@ -44,6 +44,11 @@ class ManagerController extends Controller
       return redirect()->route('manager.dashboard')->with('success','Account Added Successfully..');#make wiht this  link for see the table 
     }
 
+
+
+
+
+    
     // public function edit($user){
     // $user=User::findorfill($user);
     // return view('manager.edit',compact('user'));
