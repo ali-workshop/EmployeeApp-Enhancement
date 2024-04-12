@@ -40,7 +40,7 @@
     @enderror
 </span><br><br>
   <label for="role">Role:</label><br>
-  <select placeholder="role" name="role" >
+  <select placeholder="role" name="role"  >
     <option value="">Select Role</option>
     @foreach ( $roles as $role)
     <option value="{{$role->name}}">{{$role->name}}</option>  
