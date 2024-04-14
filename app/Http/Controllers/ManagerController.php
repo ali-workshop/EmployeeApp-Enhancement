@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class ManagerController extends Controller
 {
     public function __construct(){
-        #assuming we have a bos for the manager which is the super-mangager .in this case the manager doesn't have ths permission it's just test case.
+        #assuming we have a boss for the manager which is the super-mangager .in this case the manager doesn't have ths permission it's just test case.
         $this->middleware('permission:show employees',['only'=>['showmanagers']]);
     }
     public function index(){
