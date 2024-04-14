@@ -5,6 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Employee routes
-Route::get('/employee/index',[EmployeeController::class,'index'])->name('employee.dashboard');
-Route::get('/employees',[EmployeeController::class,'showEmployees'])->name('employees');
 
-// manager routes
+
+Route::group(['middleware'=>['role:employee']],function(){
+
+// Employee routes
+
+    Route::get('/employee/index',[EmployeeController::class,'index'])->name('employee.dashboard');
+    Route::get('/employees',[EmployeeController::class,'showEmployees'])->name('employees');
+
+});
+Route::group(['middleware'=>['role:super-manager|manager']],function (){
+    // manager routes
 Route::get('/manager/index',[ManagerController::class ,'index'])->name('manager.dashboard');
 Route::get('/manager/create',[ManagerController::class,'create'])->name('manager.create');
 Route::post('/manager/store',[ManagerController::class,'store'])->name('manager.store');
@@ -55,7 +63,7 @@ Route::get('roles/add/permission/role/{roleid}',[RoleController::class,'addPermi
                                             ->name('roles.add.permission');
 Route::PUT('roles/add/permission/role/{roleid}',[RoleController::class,'givePermissionToRole'])
                                             ->name('roles.give.permission');
-
+});
 
 
 

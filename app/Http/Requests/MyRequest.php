@@ -27,7 +27,7 @@ class MyRequest extends FormRequest
             'sname'=> ["required","string",new UpperCaseRule],
             'email'=> ['email','required','unique:users,email'],
             'password'=> ['required','string','min:8'],
-            'role'=> ['required','string'],
+            'roles'=> ['required'],
         ];
     }
     public function messages(): array{

@@ -16,7 +16,7 @@
         <th>Name</th>
         <th>Email</th>
         
-        <th>Role</th>
+        <th>Roles</th>
       </tr>
      </thead>
      <tbody>
@@ -27,7 +27,14 @@
         <td>{{$user->name}}</td>
         <td>{{$user->email}}</td>
         
-        <td>{{$user->role}}</td>
+        <td>
+        @if (!empty($user->getRoleNames()))
+          @foreach ($user->getRoleNames() as $role )
+            <label class= >{{$role}}</label>
+          @endforeach
+        @endif  
+        
+        </td>
        
         
        </tr>

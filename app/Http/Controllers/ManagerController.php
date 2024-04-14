@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class ManagerController extends Controller
 {
     public function __construct(){
-
-        $this->middleware("auth");
-        $this->middleware("manager");
+        #assuming we have a bos for the manager which is the super-mangager .in this case the manager doesn't have ths permission it's just test case.
+        $this->middleware('permission:show employees',['only'=>['showmanagers']]);
     }
     public function index(){
 
@@ -39,7 +38,7 @@ class ManagerController extends Controller
 
       $user=User::create($NewRecord);
     //   assign the entered roles into the created user using the spatie role.:)
-      $user->syncRoles($request->role);
+      $user->syncRoles($request->roles);
 
       return redirect()->route('manager.dashboard')->with('success','Account Added Successfully..');#make wiht this  link for see the table 
     }
